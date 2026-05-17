@@ -32,10 +32,15 @@ app.get('/', (req, res) => {
 
 // authentication routes
 app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
+
 // user routes
 app.use("/api/users", userRoutes);
+app.use("/users", userRoutes);
+
 // chat route
 app.use("/api/chat", chatRoutes);
+app.use("/chat", chatRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
