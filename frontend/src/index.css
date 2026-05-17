@@ -1,0 +1,258 @@
+@import "tailwindcss";
+/* Yahan se @plugin hata dein */
+
+/* Stream Chat overrides using standard CSS to override package styles predictably */
+.str-chat {
+  /* Fonts and styling adjustments */
+  --str-chat__font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Layout cleanups */
+  --str-chat__border-radius-circle: 50%;
+  --str-chat__avatar-border-radius: 50%;
+  
+  /* Outgoing / Incoming bubble configurations */
+  --chat-bg-outgoing: var(--outgoing-bubble-bg) !important;
+  --chat-text-outgoing: var(--outgoing-bubble-fg) !important;
+  --chat-bg-incoming: var(--incoming-bubble-bg) !important;
+  --chat-text-incoming: var(--incoming-bubble-fg) !important;
+}
+
+/* WhatsApp theme colors mapped dynamically */
+.str-chat__theme-light {
+  --outgoing-bubble-bg: #d9fdd3;
+  --outgoing-bubble-fg: #111b21;
+  --incoming-bubble-bg: #ffffff;
+  --incoming-bubble-fg: #111b21;
+  
+  /* General SDK colors overrides */
+  --str-chat__primary-color: #008069 !important; /* WhatsApp Green */
+  --str-chat__background-color: #ffffff !important;
+  --str-chat__body-text-color: #111b21 !important;
+  --str-chat__secondary-text-color: #667781 !important;
+  
+  /* Side panel, header and inputs */
+  --str-chat__surface-color: #f0f2f5 !important;
+  --str-chat__border-color: #e9edef !important;
+  --str-chat__active-thread-background-color: #f0f2f5 !important;
+}
+
+.str-chat__theme-dark {
+  --outgoing-bubble-bg: #005c4b;
+  --outgoing-bubble-fg: #e9edef;
+  --incoming-bubble-bg: #202c33;
+  --incoming-bubble-fg: #e9edef;
+  
+  /* General SDK colors overrides */
+  --str-chat__primary-color: #00a884 !important; /* WhatsApp Dark Green */
+  --str-chat__background-color: #111b21 !important;
+  --str-chat__body-text-color: #e9edef !important;
+  --str-chat__secondary-text-color: #8696a0 !important;
+  
+  /* Side panel, header and inputs */
+  --str-chat__surface-color: #202c33 !important;
+  --str-chat__border-color: #222e35 !important;
+  --str-chat__active-thread-background-color: #2a3942 !important;
+}
+
+/* WhatsApp Doodle Background overlay on message list */
+.str-chat__list {
+  position: relative;
+  background-color: var(--chat-list-bg) !important;
+  z-index: 1;
+}
+
+.str-chat__list::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/chat_doodle.png');
+  background-size: 380px;
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.str-chat__theme-light .str-chat__list {
+  --chat-list-bg: #efeae2;
+}
+.str-chat__theme-light .str-chat__list::before {
+  opacity: 0.07;
+  filter: invert(0);
+}
+
+.str-chat__theme-dark .str-chat__list {
+  --chat-list-bg: #0b141a;
+}
+.str-chat__theme-dark .str-chat__list::before {
+  opacity: 0.04;
+  filter: invert(0.9); /* Invert doodle pattern for dark theme */
+}
+
+/* Beautiful message bubbles */
+.str-chat__message-bubble {
+  border-radius: 12px !important;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13) !important;
+  border: none !important;
+  font-size: 14.5px !important;
+  line-height: 1.45 !important;
+  padding: 8px 12px !important;
+  font-family: inherit !important;
+}
+
+/* Make message bubbles align correctly and look smooth */
+.str-chat__message-simple {
+  padding: 2px 20px !important;
+}
+
+.str-chat__message-simple--me {
+  --str-chat__message-bubble-background-color: var(--outgoing-bubble-bg) !important;
+  --str-chat__message-bubble-text-color: var(--outgoing-bubble-fg) !important;
+}
+
+.str-chat__message-simple--other {
+  --str-chat__message-bubble-background-color: var(--incoming-bubble-bg) !important;
+  --str-chat__message-bubble-text-color: var(--incoming-bubble-fg) !important;
+}
+
+/* WhatsApp Header - Clean & Sleek */
+.str-chat__channel-header {
+  background-color: var(--str-chat__surface-color) !important;
+  border-bottom: 1px solid var(--str-chat__border-color) !important;
+  padding: 10px 16px !important;
+  box-shadow: none !important;
+}
+
+.str-chat__channel-header-title {
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  color: var(--str-chat__body-text-color) !important;
+}
+
+/* WhatsApp Sidebar (ChannelList) - Clean & Sleek */
+.str-chat-channel-list {
+  background-color: var(--str-chat__background-color) !important;
+  border-right: 1px solid var(--str-chat__border-color) !important;
+}
+
+.str-chat__channel-preview-messenger {
+  border-bottom: 1px solid var(--str-chat__border-color) !important;
+  padding: 12px 16px !important;
+  transition: background-color 0.2s ease;
+}
+
+.str-chat__channel-preview-messenger:hover {
+  background-color: var(--str-chat__active-thread-background-color) !important;
+}
+
+.str-chat__channel-preview-messenger--active {
+  background-color: var(--str-chat__active-thread-background-color) !important;
+}
+
+/* Search Input - Clean WhatsApp Style */
+.str-chat__channel-search-bar {
+  background-color: var(--str-chat__background-color) !important;
+  border-bottom: 1px solid var(--str-chat__border-color) !important;
+  padding: 12px 16px !important;
+}
+
+.str-chat__channel-search-input {
+  background-color: var(--str-chat__surface-color) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 8px 12px 8px 36px !important;
+  color: var(--str-chat__body-text-color) !important;
+  font-size: 14px !important;
+}
+
+.str-chat__channel-search-input::placeholder {
+  color: var(--str-chat__secondary-text-color) !important;
+}
+
+/* Input Composer - Modern Rounded WhatsApp Style */
+.str-chat__message-composer {
+  background-color: var(--str-chat__surface-color) !important;
+  border-top: 1px solid var(--str-chat__border-color) !important;
+  padding: 12px 16px !important;
+}
+
+.str-chat__composer-input {
+  background-color: var(--str-chat__background-color) !important;
+  border: 1px solid var(--str-chat__border-color) !important;
+  border-radius: 24px !important;
+  padding: 10px 16px !important;
+  color: var(--str-chat__body-text-color) !important;
+  font-size: 14.5px !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) !important;
+}
+
+.str-chat__composer-input:focus-within {
+  border-color: var(--str-chat__primary-color) !important;
+}
+
+.str-chat__send-button {
+  background-color: var(--str-chat__primary-color) !important;
+  color: #ffffff !important;
+  border-radius: 50% !important;
+  width: 38px !important;
+  height: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 8px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+  transition: transform 0.1s ease !important;
+}
+
+.str-chat__send-button:hover {
+  transform: scale(1.05) !important;
+  background-color: var(--str-chat__primary-color) !important;
+}
+
+.str-chat__send-button svg {
+  fill: #ffffff !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.str-chat__file-upload-button {
+  color: var(--str-chat__secondary-text-color) !important;
+  margin-right: 8px !important;
+  transition: color 0.2s ease !important;
+}
+
+.str-chat__file-upload-button:hover {
+  color: var(--str-chat__primary-color) !important;
+}
+
+/* Date Header - clean centered WhatsApp pill */
+.str-chat__date-separator {
+  margin: 16px 0 !important;
+}
+
+.str-chat__date-separator-date {
+  background-color: var(--str-chat__surface-color) !important;
+  color: var(--str-chat__secondary-text-color) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  padding: 4px 12px !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) !important;
+  text-transform: uppercase !important;
+}
+
+/* Scrollbar Customization for clean look */
+.str-chat__list::-webkit-scrollbar,
+.str-chat-channel-list::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.str-chat__list::-webkit-scrollbar-thumb,
+.str-chat-channel-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  border-radius: 3px !important;
+}
+
+.str-chat__theme-dark .str-chat__list::-webkit-scrollbar-thumb,
+.str-chat__theme-dark .str-chat-channel-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
